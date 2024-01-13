@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <title>Update Teams</title>
+</head>
+<body>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        Menu
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="/">Home</a></li>
+        <li><a class="dropdown-item" href="/teams">View Teams</a></li>
+        <li><a class="dropdown-item" href="/players">View Players</a></li>
+        <li><a class="dropdown-item" href="/coaches">View Head Coaches</a></li>
+        <li><a class="dropdown-item" href="/trainers">View Trainers</a></li>
+        <li><a class="dropdown-item" href="/stadiums">View Stadiums</a></li>
+        <li><a class="dropdown-item" href="/players_trainers">View Players-Trainers</a></li>
+    </ul>
+</div>
+  <h3>Update Team:</h3>
+  <form id="update_team" action="/update_team/{{team[0]}}" method="post">
+    <input type="hidden" name="team_id" value = "{{ team[0] }}">
+    Team Name: <input type="text" name="team_name" value = "{{ team[1] }}"><br>
+    Total Fines($USD): <input type="number" name="total_fines" value = "{{ team[2] }}" ><br>
+    Salary Available($USD): <input type="number" name="salary_available" value = "{{ team[3] }}" ><br>
+    Best Player: <select name="best_player">
+          {% for player in players %}
+            {{ player[0] }}
+            {{ team[4] }}
+            {% if player[0] == team[4] %}
+               <option selected value="{{ player[1] }}">{{ player[1] }}</option>
+            {% else %}
+              <option value="{{ player[1] }}">{{ player[1] }}</option>
+            {% endif %}
+          {% endfor %}
+      </select><br>
+      <input type="submit" value="Submit">
+   </form>
+  <br/>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
